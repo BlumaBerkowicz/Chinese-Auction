@@ -1,0 +1,34 @@
+<p-header>
+        <h4>The total sum:{{totalSum}}</h4>
+    <p-button label="place holder" (click)="placeHolder()" [raised]="true"></p-button>
+</p-header>
+
+<p-dataView #dv [value]="uniqueGifts">
+    <ng-template let-gift pTemplate="listItem">
+        <div class="col-12">
+          <div class="flex flex-row xl:align-items-start p-4 gap-4">
+            <div class="flex flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+              <div class="flex flex-column align-items-center sm:align-items-start gap-3">
+                <div class="text-2xl font-bold text-900">{{ gift.gift.name }}</div>
+                <div class="flex align-items-center gap-3">
+                  <span class="flex align-items-center gap-2">
+                    <span class="font-semibold">{{ gift.gift.category }}</span>
+                  </span>
+                </div>
+              </div>
+              <div class="flex flex-column align-items-center sm:align-items-start gap-3 col-md-4">
+              <p-image height="80px"  [src]="'../../../pictures/' +gift.gift.image" alt="Image" [preview]="true"></p-image>
+              </div>
+              <div class="flex sm:flex-column align-items-center sm:align-items-end gap-3 col-md-3 sm:gap-2">
+                <span class="text-2xl font-semibold">{{gift.gift.cost+'$' }}</span>
+              </div>
+              <p-button  (click)="plus(gift.gift.id)" icon="pi pi-plus" [rounded]="true" [text]="true" severity="help "></p-button>
+              <div>{{gift.count}}</div>
+              <p-button (click)="minus(gift.gift.id)" icon="pi pi-minus" [rounded]="true" [text]="true" severity="danger "></p-button>
+              <p-button icon="pi pi-times" [rounded]="true"  (click)="delete(gift,gift.count)" severity="danger" [outlined]="true"></p-button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+</p-dataView>
+<p-toast></p-toast>

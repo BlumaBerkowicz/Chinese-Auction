@@ -1,0 +1,12 @@
+<p-toolbar class="my-toolbar" styleClass="mb-4">
+    <ng-template pTemplate="left">
+        <div class="circle">
+        <div class="in">{{user.name[0]}}</div>
+    </div>
+        <p-tabMenu [model]="items" [activeItem]="activeItem" routerLink="activeItem?.routerLink"></p-tabMenu>
+    </ng-template>
+    <ng-template pTemplate="center">
+        <h1>Chineese Auction</h1>
+    </ng-template>
+</p-toolbar>
+<router-outlet></router-outlet>

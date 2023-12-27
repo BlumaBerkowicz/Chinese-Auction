@@ -1,0 +1,75 @@
+<div class="my-css">
+    <p-table #dt [value]="gifts" [rows]="5" [paginator]="true"
+        [globalFilterFields]="['name','category','representative.name','status']" 
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Manage Gifts</h5>
+                <p-button (click)="newGift()">new gift</p-button>
+    <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText/>
+    </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 2rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="donor">Donor <p-sortIcon field="donor"></p-sortIcon></th>
+                <th pSortableColumn="cost">Cost <p-sortIcon field="cost"></p-sortIcon></th>
+                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon></th>
+                <th pSortableColumn="delete">Delete/Edit <p-sortIcon field="delete"></p-sortIcon></th>
+                
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-gift>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="gift"></p-tableCheckbox>
+                </td>
+                <td>{{gift.id}}</td>
+                <td>{{gift.name}}</td>
+                <td>{{gift.donor.name}}</td>
+                <td>{{gift.cost}}</td>
+                <td>{{gift.description}}</td>
+                <td>{{gift.image}}</td>
+                <td>
+                        <button (click)="deleteGift(gift.id)" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" ></button> 
+                        <button  (click)="showDialog(gift)" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning"></button>
+                 </td>
+                    </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{gifts ? gifts.length : 0 }} gifts.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+<div class="card flex justify-content-center">
+    <p-dialog [(visible)]="visible" [style]="{ 'height': '85%' }">
+      <div>name</div>
+          <input type="text" pInputText [(ngModel)]="giftToUpdate.name" [value]="selectedGift.name" />
+          <div>description</div>
+          <input type="text" pInputText [(ngModel)]="giftToUpdate.description" [value]="selectedGift.description" />
+          <div>image</div>
+          <input type="text" pInputText [(ngModel)]="giftToUpdate.image" [value]="selectedGift.image" />  
+          <div>cost</div>
+         
+          <p-inputNumber [showButtons]="true" [(ngModel)]="giftToUpdate.cost" inputId="stacked" mode="currency" currency="ils" [ngModel]="selectedGift.cost" [min]="0"></p-inputNumber>
+          <div>donor</div>
+          <p-dropdown [options]="donors" optionLabel="name" [(ngModel)]="giftToUpdate.donor" [showClear]="true"></p-dropdown>
+         <br>
+          <p-button label="Cancel" (click)="closeDialog()" [text]="true"></p-button>
+          <p-button label="Save" (click)="updateGift()" [text]="true"></p-button>
+    </p-dialog>
+  </div>
+  <p-toast></p-toast>
+<router-outlet></router-outlet>

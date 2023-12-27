@@ -1,0 +1,53 @@
+<div class="my-css">
+    <p-table #dt [value]="gifts" [rows]="5" [paginator]="true"
+        [globalFilterFields]="['name','category','representative.name','status']" 
+        [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText/>
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 2rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="donor">Donor <p-sortIcon field="donor"></p-sortIcon></th>
+                <th pSortableColumn="cost">Cost <p-sortIcon field="cost"></p-sortIcon></th>
+                <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                <th pSortableColumn="image">Image <p-sortIcon field="image"></p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-gift>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="gift"></p-tableCheckbox>
+                </td>
+                <td>{{gift.id}}</td>
+                <td>{{gift.name}}</td>
+                <td>{{gift.donor.name}}</td>
+                <td>{{gift.cost}}</td>
+                <td>{{gift.description}}</td>
+                <td>
+                <p-image height="100px"  [src]="'../../../pictures/' +gift.image" alt="Image" [preview]="true"></p-image>
+               </td>
+                <td>
+                    <button (click)="addToCart(gift)" pButton pRipple icon="pi pi-plus" class="p-button-rounded p-button-warning">add to cart</button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                In total there are {{gifts ? gifts.length : 0 }} gifts.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+<p-toast></p-toast>
