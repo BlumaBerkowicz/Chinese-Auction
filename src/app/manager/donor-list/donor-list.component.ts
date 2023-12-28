@@ -26,6 +26,7 @@ getAllDonors(){
     this.donors=data;
   })
 }
+
 showDialog(donor:Donor) {
     this.visible = true;
     this.selectedDonor=donor;
@@ -58,7 +59,7 @@ updateDonor(){
 deleteDonor(id:number){
 this.donorService.deleteDonor(id).subscribe(
 data=>{
-  this.messageService.add({ severity: 'success', summary: 'Success', detail: `Gift ${id} Deleted Sucssesfully` });
+  this.messageService.add({ severity: 'success', summary: 'Success', detail: `donor ${id} Deleted Sucssesfully` });
   this.getAllDonors();
 }
 )

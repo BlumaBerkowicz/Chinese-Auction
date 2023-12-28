@@ -7,7 +7,7 @@ import { Gift } from '../models/gift.model';
   providedIn: 'root'
 })
 export class GiftService {
-port:number=7268;
+port:number=7240;
   constructor(private http:HttpClient) { }
   public getAllGifts():Observable<Gift[]>{
   let url = `https://localhost:${this.port}/api/Gift/getAllGifts`

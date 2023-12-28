@@ -70,12 +70,18 @@ else
   )
   this.closeDialog();
 }}
-deleteGift(id:number){
-  this.giftService.deleteGift(id).subscribe(data=>{
-    this.gifts= this.gifts.filter(obj => obj.id !== id);
+
+deleteGift(gift:Gift){
+if(gift.tickets.length>0){
+  alert("not aloud to delete this gift.")
+}
+else{
+   this.giftService.deleteGift(gift.id).subscribe(data=>{
+    this.gifts= this.gifts.filter(obj => obj.id !== gift.id);
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Deleted Sucssesfully' });
     return data;
   }
   )
+}
 }
 }

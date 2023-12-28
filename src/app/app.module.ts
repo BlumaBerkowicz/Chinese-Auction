@@ -34,6 +34,8 @@ import { PasswordModule } from 'primeng/password';
 import { MenubarModule } from 'primeng/menubar';
 import { ImageModule } from 'primeng/image';
 import { TabViewModule } from 'primeng/tabview';
+import { CalendarModule } from 'primeng/calendar';
+
 
 
 @NgModule({
@@ -76,7 +78,8 @@ import { TabViewModule } from 'primeng/tabview';
     CommonModule,
     MenubarModule,
     ImageModule,
-    TabViewModule
+    TabViewModule,
+    CalendarModule
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

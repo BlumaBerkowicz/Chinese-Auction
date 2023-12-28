@@ -8,7 +8,7 @@ import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
   providedIn: 'root'
 })
 export class DonorService {
-  port:number=7268;
+  port:number=7240;
 
   constructor(private http:HttpClient) { }
 public GetAllDonors():Observable<Donor[]>{

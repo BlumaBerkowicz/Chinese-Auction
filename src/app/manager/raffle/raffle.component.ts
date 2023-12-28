@@ -26,15 +26,17 @@ ngOnInit(): void {
       this.users=data;
     })
 }
+
   raffle(){
   for(let i=0;i<this.gifts.length;i++){
     if(this.gifts[i].tickets){
     let m = Math.floor(Math.random() * (this.gifts[i].tickets.length));
     let id=this.gifts[i].tickets[m];
+    this.gifts[i].tickets=[];
     this.userService.GetUserById(id).subscribe(data=>{
-      this.gifts[i].tickets=[];
       this.messageService.add({ severity: 'success', summary: 'Success', detail: `the winner is: ${data.name} with gift: ${this.gifts[i].name}` });  
     })}
+    this.gifts[i].tickets=[];
   }
 }
 }

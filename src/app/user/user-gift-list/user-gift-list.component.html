@@ -13,9 +13,6 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width: 2rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
                 <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th>
                 <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
                 <th pSortableColumn="donor">Donor <p-sortIcon field="donor"></p-sortIcon></th>
@@ -27,9 +24,6 @@
         </ng-template>
         <ng-template pTemplate="body" let-gift>
             <tr>
-                <td>
-                    <p-tableCheckbox [value]="gift"></p-tableCheckbox>
-                </td>
                 <td>{{gift.id}}</td>
                 <td>{{gift.name}}</td>
                 <td>{{gift.donor.name}}</td>

@@ -16,6 +16,10 @@ export class CartComponent implements OnInit{
   constructor(private activatedroute: ActivatedRoute,private router:Router,private messageService:MessageService,private activatedRoute:ActivatedRoute,private giftService:GiftService){}
   user:User=new User();
   userData=sessionStorage.getItem("user");
+  visible:boolean=false;
+  placeHolder(){
+this.visible=true;
+  }
 ngOnInit(): void {
   if(this.cart.length==0){
     alert("your cart is empty")
@@ -30,15 +34,16 @@ ngOnInit(): void {
 cartData = sessionStorage.getItem("cart");
 cart = this.cartData ? JSON.parse(this.cartData) : [];
 totalSum:number=0;
+closeDialog(){
+  this.visible=false
+}
 delete(gift:Gift,count:number){
-  
-this.totalSum=this.totalSum-(count*gift.cost)
-this.cart=this.cart.filter((p: { id: number; })=>p.id!=gift.id)
+this.totalSum=this.totalSum-(count*(gift.cost))
+this.cart=this.cart.filter((p:{ id: number})=>p.id!=gift.id)
 sessionStorage.setItem("cart",JSON.stringify(this.cart))
 this.load();
 }
-
-placeHolder(){
+saveOrder(){
     if(this.login()){
     for(let i=0;i<this.cart.length;i++){
       if(!this.cart[i].tickets){
@@ -49,8 +54,11 @@ placeHolder(){
       })
     }
     sessionStorage.removeItem("cart");
-        this.load();
+    this.uniqueGifts=[];
+    this.totalSum=0;
+    // this.load();
     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'your order has been eccepted' });
+    this.closeDialog();
   }
 }
 

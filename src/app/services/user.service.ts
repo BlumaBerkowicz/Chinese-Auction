@@ -8,7 +8,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  port:number=7268;
+  port:number=7240;
   constructor(private http:HttpClient) { }
 
   public GetUserById(id:number):Observable<User>{

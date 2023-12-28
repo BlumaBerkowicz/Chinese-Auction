@@ -25,10 +25,24 @@
               <p-button  (click)="plus(gift.gift.id)" icon="pi pi-plus" [rounded]="true" [text]="true" severity="help "></p-button>
               <div>{{gift.count}}</div>
               <p-button (click)="minus(gift.gift.id)" icon="pi pi-minus" [rounded]="true" [text]="true" severity="danger "></p-button>
-              <p-button icon="pi pi-times" [rounded]="true"  (click)="delete(gift,gift.count)" severity="danger" [outlined]="true"></p-button>
+              <p-button icon="pi pi-times" [rounded]="true"  (click)="delete(gift.gift,gift.count)" severity="danger" [outlined]="true"></p-button>
             </div>
           </div>
         </div>
       </ng-template>
 </p-dataView>
+
+<div *ngIf="visible" class="card flex justify-content-center">
+  <p-dialog [(visible)]="visible">
+      <div>number of credit card</div>
+          <input type="text" pInputText  />
+          <div>card validity</div>
+          <p-calendar dateFormat="dd.mm.yy"></p-calendar>
+          <div>cvv</div>
+          <input type="text"  />
+          <br>
+          <p-button label="Cancel" (click)="closeDialog()" [text]="true" ></p-button>
+          <p-button label="Save" (click)="saveOrder()" [text]="true"></p-button>
+      </p-dialog>
+      </div>
 <p-toast></p-toast>
